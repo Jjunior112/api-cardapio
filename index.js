@@ -2,12 +2,10 @@ const dotenv = require('dotenv')
 
 const express = require('express')
 
-const menu = require('./src/routes/menu');
+const routes = require('./src/routes/routes');
 
-const types = require('./src/routes/types');
 
 const app = express();
-
 
 const cors = require('cors');
 
@@ -19,9 +17,8 @@ connectToDatabase();
 
 app.use(cors())
 
-app.use(menu);
+app.use(routes);
 
-app.use(types);
 
 app.listen(process.env.PORT,()=>{
     console.log('rodando na porta ', process.env.PORT)

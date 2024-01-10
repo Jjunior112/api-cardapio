@@ -1,15 +1,14 @@
 const express = require('express');
 
-const routes = express.Router();
+const menu = express.Router();
 
 const menuModel = require('../models/menu.model');
 
-routes.use(express.json());
-
+menu.use(express.json());
 
 //get de todos os pratos 
 
-routes.get('/menu', async (req, res) => {
+menu.get('/menu', async (req, res) => {
     try {
         const menu = await menuModel.find({})
 
@@ -21,7 +20,7 @@ routes.get('/menu', async (req, res) => {
 
 // get de pratos por id
 
-routes.get('/menu/:id', async (req, res) => {
+menu.get('/menu/:id', async (req, res) => {
     try {
         const id = req.params.id
         const menu = await menuModel.findById(id)
@@ -35,7 +34,7 @@ routes.get('/menu/:id', async (req, res) => {
 
 // add novos pratos
 
-routes.post('/menu', async (req, res) => {
+menu.post('/menu', async (req, res) => {
     try {
         const menu = await menuModel.create(req.body)
 
@@ -47,7 +46,7 @@ routes.post('/menu', async (req, res) => {
 
 // delete de pratos
 
-routes.delete('/menu/:id',async (req,res)=>{
+menu.delete('/menu/:id',async (req,res)=>{
     try {
         const id = req.params.id
         
@@ -60,6 +59,4 @@ routes.delete('/menu/:id',async (req,res)=>{
     }
 })
 
-module.exports = routes;
-
-
+module.exports = menu;

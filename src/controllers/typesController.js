@@ -1,12 +1,12 @@
 const express = require('express');
 
-const routes = express.Router()
+const types = express.Router()
 
 const TypeModel = require('../models/type.model');
 
-routes.use(express.json())
+types.use(express.json())
 
-routes.get('/types', async (req, res) => {
+types.get('/types', async (req, res) => {
     try {
         const type = await TypeModel.find({})
 
@@ -19,7 +19,7 @@ routes.get('/types', async (req, res) => {
 
 })
 
-routes.get('/types/:id', async (req, res) => {
+types.get('/types/:id', async (req, res) => {
     try {
         const id = req.params.id
         const type = await TypeModel.findById(id)
@@ -34,7 +34,7 @@ routes.get('/types/:id', async (req, res) => {
 })
 
 
-routes.post('/types', async (req, res) => {
+types.post('/types', async (req, res) => {
     try {
         const type = await TypeModel.create(req.body)
 
@@ -45,7 +45,7 @@ routes.post('/types', async (req, res) => {
     }
 })
 
-routes.delete('/types/:id', async (req, res) => {
+types.delete('/types/:id', async (req, res) => {
     try {
         const id = req.params.id
 
@@ -59,4 +59,4 @@ routes.delete('/types/:id', async (req, res) => {
 })
 
 
-module.exports = routes
+module.exports = types
